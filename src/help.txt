@@ -1,0 +1,175 @@
+ ------------------------------------------------------------   
+import React, {useState} from 'react';
+import TENSE_VERBS from '../../data/verbs';
+import FlashCard from '../flash-card/flash-card.component'
+import '../practice-tense-verbs/practice-tense-verbs.scss';
+
+
+const PracticeTenses = () => {
+    const [tense, setTense] = useState('Infinitive');
+    const [count, setCount] = useState(0); // este sera el index del array
+    const [vals, setVals] = useState({"verb": "Chambing", "meaning": "Trabajando"});
+
+    const Advance = (add) => { // console.log("Verbo:" + JSON.stringify(verb.Past) + " " + tense + " " + JSON.stringify(verb.SignificadoPasado))
+        console.log("Advance function ", tense)
+        add === '+' ? setCount(count + 1) : setCount(count - 1)
+        console.log("Counter ", count)
+
+    }
+
+    const TranslateObject = (tense, verb) => { // console.log("Verbo:" + JSON.stringify(verb.Past) + " " + tense + " " + JSON.stringify(verb.SignificadoPasado))
+        switch (tense) {
+            case "Infinitive":
+                return {
+                    "verb": ' "To' + verb.Infinitive.toLowerCase + '"',
+                    "meaning": '"' + verb.SignificadoPresente + '"'
+                }
+
+            default:
+                return {};
+                // verb and meaning. return an object with those values
+        }
+    }
+
+    return (
+        <div>
+            <h1>Practice</h1>
+            <h2>TENSE_VERBS[count] para aavnzar</h2>
+
+            <div>
+                <select name="tense"
+                    onChange={
+                        e => setTense(e.target.value)
+                }>
+                    <option value="Infinitive">Presente</option>
+                    <option value="Past">Pasado</option>
+                    <option value="Future">Futuro</option>
+                </select>
+
+                <div>
+                    <p/>
+
+                    <button onClick={
+                        () => Advance('-')
+                    }>Previous</button>
+
+                    <button onClick={
+                        () => Advance('+')
+                    }>NEXT</button>
+                </div>
+
+                {
+
+                < FlashCard verb = {
+                    // TENSE,ya sea infinitive,past,future
+                    // podria usar  TENSE_VERBS.data[count] al momento de advance
+                    // aqui necesito mandar el resultado dependiendo el 
+                    // tiempo seleccionad9
+                    TENSE_VERBS.data[count].Infinitive
+
+                    // mandar tense y verbo
+                    // setVals
+                }
+                meaning = {
+                    TENSE_VERBS.data[count].SignificadoPresente
+                } />
+            } </div>
+        </div>
+    )
+}
+
+export default PracticeTenses
+
+--------------------------------------------------------------
+import React from 'react';
+import './flash-card.styles.scss';
+
+
+const FlashCard = ({verb, meaning}) => {
+    return (
+        <div className='flashacard'>
+            <h1>{verb}
+                = {meaning}</h1>
+        </div>
+    )
+}
+
+export default FlashCard
+    
+    https://www.espressoenglish.net/wp-content/uploads/2012/10/List-of-English-Verb-Tenses.pdf
+    infinitive: to walk es la forma simple del verbo
+    Past
+    past participle terminacion ado ido acompanado de have y has had para pasado
+
+    https://www.linguasorb.com/english/verbs/conjugation/be
+
+
+const solvwe(tense) => {
+    let solution = "";
+    return solution;
+}
+
+    Para el fururo checcar si es el o ella
+
+       // Translate tense verb
+        // count >= 0 ? <FlashCard verb={
+        //     vals.verb
+        // }
+        // meaning={
+        //     vals.meaning
+        // }/> : null
+
+ case 'Past':
+            return {verb: verb.Past, meaning: verb.SignificadoPasado}
+            break;
+        case "Future":
+            return {
+                verb: "Will " + verb.Infinitive.toLowerCase(),
+                meaning: verb.SignificadoFuturo
+            }
+            break;
+
+
+         switch (tense) {
+                    case "Infinitive":
+                        verb.Infinitive + " = " + verb.SignificadoPresente
+                    case 'Pasts':
+                        verb.Past + " = " + verb.SignificadoPasado
+                        break;
+                    case "Participle":
+                        verb.Future + " = " + verb.SignificadoFuturo
+                        break;
+                    default:
+                        // code block
+                }
+
+                tense === "Infinitive" ? verb.infinitive + " = " + verb.SignificadoPresente : 
+                tense === "Past" ? verb.Past + " = " + verb.SignificadoPasado 
+                : verb.Future + " = " + verb.SignificadoFuturo
+
+                       tense === "Infinitive" ? verb.infinitive + " = " + verb.SignificadoPresente : null
+
+                             verb.Past + ' = ' + verb.Significado
+
+funciona:
+
+tense === "Infinitive" ? verb.Infinitive + " = " + verb.SignificadoPresente : tense === "Past" ? verb.Past + " = " + verb.SignificadoPasado : null
+
+ <button onClick={
+            () => Advance(-1)
+        }>Previous</button>
+
+        <button onClick={
+            () => Advance(1)
+        }>NEXT</button>
+        // tense === "Infinitive" ? "To " + verb.Infinitive.toLowerCase() + " = " + verb.SignificadoPresente : tense === "Past" ? verb.Past + " = " + verb.SignificadoPasado : null
+
+
+                  // TENSE_VERBS.data.map(verb => (
+                //     <p key={
+                //         verb.Significado
+                //     }>
+                //         {
+                //         Translate(tense, verb)
+                //     } </p>
+                // ))
