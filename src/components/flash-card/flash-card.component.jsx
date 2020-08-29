@@ -1,11 +1,82 @@
 import React from 'react';
 import './flash-card.styles.scss';
+// onClick={
+//    () => Pronunsation(tense,TENSE_VERBS.data[localStorage.getItem('counter')])
+
+const FlashCard = ({translation, lang, count,tense, verb }) => {
+
+    const Alertame = (tense, verb) => {
+       
+        let data = tense+" "+verb;
+        debugger;
+        alert(data);
 
 
-const FlashCard = ({translation}) => {
+    }
+
+    const PlayPronunsation = (verb) => {
+        if ('speechSynthesis' in window) {
+            
+   
+        var msg = new SpeechSynthesisUtterance();
+        if(lang === "es")
+            msg.lang  = 'es-MX';    
+        else
+            msg.lang  = 'en-US';
+
+        msg.text = verb; 
+        //debugger;
+        window.speechSynthesis.speak(msg);
+        //window.speechSynthesis.speak(msg);
+        }else{
+        alert("Sorry, your browser doesn't support the speech synthesis API !");
+        }
+}
+
+const Pronunsation = (tense, verb) => {
+    if ( lang === "en" && count >= 0 ) {
+        switch (tense) {
+            case "Infinitive":
+                PlayPronunsation("To " + verb.Infinitive.toLowerCase());  
+                break;  
+            case 'Past':
+                PlayPronunsation(verb.Past);
+                break; 
+            case "Future":
+                PlayPronunsation("Will "+verb.Infinitive);
+                break;
+            default:
+                return "";
+        }
+    } else if ( lang === "es" && count >= 0 ) {
+        switch (tense) {
+            case "Infinitive":
+                PlayPronunsation(verb.SignificadoPresente);
+                break;
+            case 'Past':
+                PlayPronunsation(verb.SignificadoPasado);
+                break;
+            case "Future":
+                PlayPronunsation(verb.SignificadoFuturo);
+                break;
+            default:
+                return "";
+        }
+    }
+    
+}
+
     return (
         <div className='flashcard'>
-            <h1>{translation}</h1>
+            <h1>
+            {translation}    
+          
+            <span onClick={
+                () => Pronunsation(tense,verb)
+            }>
+            {' '} <i class="fas fa-volume-up"></i>  
+            </span>
+            </h1>
         </div>
     )
 }

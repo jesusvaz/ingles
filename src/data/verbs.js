@@ -84,7 +84,7 @@ const TENSE_VERBS = {
             Participle: "Answered",
             SignificadoPresente: "Responder",
             SignificadoPasado: "Respondi",
-            SignificadoFuturo: "Respondere",
+            SignificadoFuturo: "Responderé",
             tipo: "regular"
         }, {
             Infinitive: "Appear",
